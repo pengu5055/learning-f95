@@ -6,11 +6,17 @@ DENSITY = 1000
 x_min, x_max = -2.68, 1.32
 y_min, y_max = -1.5, 1.5
 
+# Cast all to float64
+x_min, x_max = np.float64(x_min), np.float64(x_max)
+y_min, y_max = np.float64(y_min), np.float64(y_max)
+
+print(type(x_min))
+
 start_time = time()
 
 X, Y = np.meshgrid(np.linspace(x_min, x_max, DENSITY), np.linspace(y_min, y_max, DENSITY))
 
-c = X + 1j * Y
+c = np.complex64(X + 1j * Y)
 z = c.copy()
 fractal = np.zeros(z.shape, dtype=np.uint8) + 255
 
